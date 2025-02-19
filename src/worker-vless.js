@@ -1,4 +1,4 @@
-// <!--GAMFC-->version base on commit 841ed4e9ff121dde0ed6a56ae800c2e6c4f66056, time is 2024-04-16 18:02:37 UTC<!--GAMFC-END-->.
+// <!--GAMFC-->version base on commit 58686d5d125194d34a1137913b3a64ddcf55872f, time is 2024-11-27 09:26:01 UTC<!--GAMFC-END-->.
 // @ts-ignore
 import { connect } from 'cloudflare:sockets';
 
@@ -600,7 +600,12 @@ async function handleUDPOutBound(webSocket, vlessResponseHeader, log) {
  * @returns {string}
  */
 function getVLESSConfig(userID, hostName) {
-	const vlessMain = `vless://${userID}\u0040${hostName}:443?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2048#${hostName}`
+	const protocol = "vless";
+	const vlessMain = 
+	`${protocol}` + 
+	`://${userID}@${hostName}:443`+
+	`?encryption=none&security=tls&sni=${hostName}&fp=randomized&type=ws&host=${hostName}&path=%2F%3Fed%3D2048#${hostName}`;
+	
 	return `
 ################################################################
 v2ray
